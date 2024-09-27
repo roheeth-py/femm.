@@ -29,15 +29,14 @@ class Femm extends StatelessWidget {
             children: [
               Text(
                 "Keep track of\nyour period",
-                style: Theme.of(context).textTheme.bodyLarge,
+                style: Theme.of(context).textTheme.titleLarge,
               ),
               SizedBox(
                 height: height / 40,
               ),
               Text(
                   "Easily and accurately track each\nphase of your menstrual cycle",
-                  style: Theme.of(context).textTheme.bodySmall
-              ),
+                  style: Theme.of(context).textTheme.bodyMedium),
               SizedBox(
                 height: height / 12,
               ),
@@ -46,8 +45,12 @@ class Femm extends StatelessWidget {
                 height: 50,
                 child: ElevatedButton(
                   onPressed: () {},
-                  child: Text("Get Started",
-                    style: Theme.of(context).textTheme.bodyMedium,
+                  child: Text(
+                    "Get Started",
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyMedium!
+                        .copyWith(color: Colors.pinkAccent),
                   ),
                 ),
               ),
