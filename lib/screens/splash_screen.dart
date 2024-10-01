@@ -1,7 +1,19 @@
 import 'package:flutter/material.dart';
 
+import 'main_screen.dart';
+
 class Femm extends StatelessWidget {
   const Femm({super.key});
+
+  void mainScreenNavigation(BuildContext context) {
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (ctx) {
+          return const MainScreen();
+        },
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -9,6 +21,7 @@ class Femm extends StatelessWidget {
     final height = MediaQuery.of(context).size.height; //890
 
     return Scaffold(
+      appBar: AppBar(),
       body: Align(
         alignment: Alignment.bottomCenter,
         child: Container(
@@ -29,14 +42,18 @@ class Femm extends StatelessWidget {
             children: [
               Text(
                 "Keep track of\nyour period",
-                style: Theme.of(context).textTheme.titleLarge,
+                style: Theme.of(context).textTheme.displayLarge,
               ),
               SizedBox(
                 height: height / 40,
               ),
               Text(
-                  "Easily and accurately track each\nphase of your menstrual cycle",
-                  style: Theme.of(context).textTheme.bodyMedium),
+                "Easily and accurately track each\nphase of your menstrual cycle",
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyMedium!
+                    .copyWith(color: Colors.white),
+              ),
               SizedBox(
                 height: height / 12,
               ),
@@ -44,13 +61,15 @@ class Femm extends StatelessWidget {
                 width: width,
                 height: 50,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () => mainScreenNavigation(context),
                   child: Text(
                     "Get Started",
                     style: Theme.of(context)
                         .textTheme
                         .bodyMedium!
-                        .copyWith(color: Colors.pinkAccent),
+                        .copyWith(
+                      color: Colors.pinkAccent,
+                    ),
                   ),
                 ),
               ),
