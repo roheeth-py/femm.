@@ -1,6 +1,6 @@
-import 'package:femm/screens/splash_screen.dart';
+import 'package:femm/screens/authentication/splash_screen.dart';
+import 'package:femm/screens/main/track.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 ThemeData theme = ThemeData(
   scaffoldBackgroundColor: const Color(0xFFFAFAFE),
@@ -30,20 +30,21 @@ ThemeData theme = ThemeData(
     ),
     bodyLarge:  const TextStyle(
       fontFamily: "Public sans",
-      fontSize: 38,
-      color: Colors.white,
+      fontSize: 18,
+      color: Colors.black,
     ),
     bodyMedium:  const TextStyle(
       fontFamily: "Public sans",
-      fontSize: 20,
+      fontSize: 16,
       color: Colors.black,
     ),
     bodySmall: const TextStyle(
       fontFamily: "Public sans",
       fontStyle: FontStyle.normal,
-      fontSize: 16,
-      color: Colors.white,
+      fontSize: 14,
+      color: Colors.black,
     ),
+
   ),
 );
 
@@ -51,7 +52,7 @@ void main() {
   runApp(
     MaterialApp(
       theme: theme,
-      home: const Femm(),
+      home: const Track(),
     ),
   );
 }
