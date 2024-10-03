@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../screens/main/track.dart';
+
 class MainCard extends StatelessWidget {
   const MainCard({super.key});
 
@@ -60,18 +62,25 @@ class MainCard extends StatelessWidget {
           Stack(
             clipBehavior: Clip.none,
             children: [
-              Container(
-                height: 48,
-                width: 48,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50),
-                  border: Border.all(
-                    color: const Color(0xFFfafafa),
+              GestureDetector(
+                onTap: (){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (ctx){
+                    return Track();
+                  }));
+                },
+                child: Container(
+                  height: 48,
+                  width: 48,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                    border: Border.all(
+                      color: const Color(0xFFfafafa),
+                    ),
                   ),
-                ),
-                child: const Icon(
-                  Icons.edit,
-                  color: Colors.white,
+                  child: const Icon(
+                    Icons.edit,
+                    color: Colors.white,
+                  ),
                 ),
               ),
               Positioned(
