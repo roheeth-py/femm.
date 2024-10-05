@@ -1,6 +1,7 @@
+import 'package:femm/screens/authentication/login_screen.dart';
 import 'package:femm/screens/authentication/splash_screen.dart';
-import 'package:femm/screens/main/track.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 ThemeData theme = ThemeData(
   scaffoldBackgroundColor: const Color(0xFFFAFAFE),
@@ -50,9 +51,11 @@ ThemeData theme = ThemeData(
 
 void main() {
   runApp(
-    MaterialApp(
-      theme: theme,
-      home: const Femm(),
+    ProviderScope(
+      child: MaterialApp(
+        theme: theme,
+        home:  LoginScreen(),
+      ),
     ),
   );
 }

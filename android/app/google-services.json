@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "696194756191",
+    "firebase_url": "https://expenses-7464e-default-rtdb.firebaseio.com",
+    "project_id": "expenses-7464e",
+    "storage_bucket": "expenses-7464e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:696194756191:android:f11033b164cca05f3075ea",
+        "android_client_info": {
+          "package_name": "com.example.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhi6Yi66OIlqaBH0ZNvr5T_D-shZa_y38"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:696194756191:android:3717baf624b789833075ea",
+        "android_client_info": {
+          "package_name": "com.example.femm"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhi6Yi66OIlqaBH0ZNvr5T_D-shZa_y38"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

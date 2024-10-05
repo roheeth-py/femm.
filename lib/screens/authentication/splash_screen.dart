@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-
 import '../main/main_screen.dart';
 
-class Femm extends StatelessWidget {
-  const Femm({super.key});
+class SplashScreen extends StatelessWidget {
+  const SplashScreen({super.key});
 
   void mainScreenNavigation(BuildContext context) {
     Navigator.of(context).pushReplacement(
@@ -64,12 +63,9 @@ class Femm extends StatelessWidget {
                   onPressed: () => mainScreenNavigation(context),
                   child: Text(
                     "Get Started",
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyMedium!
-                        .copyWith(
-                      color: Colors.pinkAccent,
-                    ),
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                          color: Colors.pinkAccent,
+                        ),
                   ),
                 ),
               ),
