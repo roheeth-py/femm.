@@ -1,17 +1,18 @@
-import 'package:femm/screens/authentication/signup_screen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:femm/screens/authentication/login_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatefulWidget {
+class SignupScreen extends StatefulWidget {
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<SignupScreen> createState() => _SignupScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignupScreenState extends State<SignupScreen> {
   final key = GlobalKey<FormState>();
+
   final emailController = TextEditingController();
+
   final passwordController = TextEditingController();
 
   Future<void> saveState() async {
@@ -20,37 +21,33 @@ class _LoginScreenState extends State<LoginScreen> {
     }
     key.currentState!.save();
     try {
-      FocusScope.of(context).unfocus();
-      final userCredentials = await FirebaseAuth.instance
-          .signInWithEmailAndPassword(
-              email: emailController.text, password: passwordController.text,
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: emailController.text,
+        password: passwordController.text,
       );
     } on FirebaseAuthException catch (e) {
-      Fluttertoast.showToast(msg: e.message ?? "Auth failed");
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(e.message ?? "Auth failed"),
+        ),
+      );
     }
     await FirebaseFirestore.instance
         .collection("users")
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .set(
       {
-        "Login time": Timestamp.now(),
+        "uid": FirebaseAuth.instance.currentUser!.uid,
+        "Email Id": emailController.text,
+        "Created time": Timestamp.now(),
       },
-      SetOptions(
-        merge: true,
-      ),
     );
-  }
-
-  @override
-  void dispose() {
-    emailController.dispose();
-    passwordController.dispose();
-    super.dispose();
   }
 
   @override
   Widget build(context) {
     final width = MediaQuery.of(context).size.width; //411
+    final height = MediaQuery.of(context).size.height; //890
 
     return Scaffold(
       body: Padding(
@@ -70,10 +67,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   fillColor: Colors.white,
                   hintText: "Email",
                   contentPadding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                      EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                 ),
               ),
-              const SizedBox(
+              SizedBox(
                 height: 20,
               ),
               TextFormField(
@@ -86,10 +83,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   fillColor: Colors.white,
                   hintText: "Password",
                   contentPadding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                      EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                 ),
               ),
-              const SizedBox(
+              SizedBox(
                 height: 50,
               ),
               InkWell(
@@ -110,7 +107,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   child: Text(
-                    "Get Started",
+                    "Create Account",
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                           color: Colors.white,
@@ -118,24 +115,24 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
               ),
-              const SizedBox(
+              SizedBox(
                 height: 10,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text("Don't have an account?"),
+                  Text("Existing User?"),
                   TextButton(
                     onPressed: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (ctx) {
-                            return SignupScreen();
+                            return LoginScreen();
                           },
                         ),
                       );
                     },
-                    child: const Text("Sign Up"),
+                    child: Text("Login In"),
                   ),
                 ],
               )

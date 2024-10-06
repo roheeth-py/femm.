@@ -1,6 +1,7 @@
 import 'package:femm/widgets/main_screen/date_picker.dart';
 import 'package:femm/widgets/main_screen/main_card.dart';
 import 'package:femm/widgets/main_screen/timeline.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -32,6 +33,11 @@ class _MainScreenState extends State<MainScreen> {
           monthName,
           style: Theme.of(context).textTheme.bodyLarge,
         ),
+        actions: [
+          IconButton(onPressed: (){
+            FirebaseAuth.instance.signOut();
+          }, icon: Icon(Icons.more_vert))
+        ],
       ),
       body: const Column(
         children: [
