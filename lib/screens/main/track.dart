@@ -1,7 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:femm/models/track_cycle.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 
+import '../../providers/track_cycle_provider.dart';
 import '../../widgets/track/track_enums.dart';
 
 class Track extends ConsumerStatefulWidget {
@@ -14,6 +18,8 @@ class Track extends ConsumerStatefulWidget {
 class _TrackState extends ConsumerState<Track> {
   @override
   Widget build(BuildContext context) {
+    final provider = ref.watch(trackCycleProvider);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -29,7 +35,17 @@ class _TrackState extends ConsumerState<Track> {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () async {
+              if (provider.length > 0) {
+                await FirebaseFirestore.instance
+                    .collection("users")
+                    .doc(FirebaseAuth.instance.currentUser!.uid)
+                    .update({
+                  "${DateFormat("MMMM Y").format(DateTime.now())}": FieldValue.arrayUnion([provider.map((e)=>e.toString())]),
+                });
+              }
+              print(provider);
+            },
             icon: const Icon(
               Icons.checklist_rtl,
             ),

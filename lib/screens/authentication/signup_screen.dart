@@ -40,7 +40,11 @@ class _SignupScreenState extends State<SignupScreen> {
         "uid": FirebaseAuth.instance.currentUser!.uid,
         "Email Id": emailController.text,
         "Created time": Timestamp.now(),
+        "Period": [],
       },
+      SetOptions(
+        merge: true,
+      )
     );
   }
 
